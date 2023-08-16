@@ -1,8 +1,13 @@
 import Head from 'next/head';
 import styles from './Home.module.scss';
 import clsx from 'clsx';
+import axios from 'axios';
+import Image from 'next/image';
+import Visual from '@/components/pic/Visual';
 
-export default function Home() {
+export default function Home({ meals }) {
+	const newMeals = meals.slice(0, 6);
+	console.log(newMeals);
 	return (
 		<>
 			<Head>
@@ -12,8 +17,31 @@ export default function Home() {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className={clsx(styles.main)}>
-				<h1>Main Page</h1>
+				<figure className='visual'>
+					<article className='bg'>
+						{newMeals.map((item) => (
+							<Visual key={item.idMeal} imgSrc={item.strMealThumb} />
+						))}
+					</article>
+
+					<article className='list'>
+						{newMeals.map((item) => (
+							<h2 key={item.idMeal}>{item.strMeal}</h2>
+						))}
+					</article>
+				</figure>
 			</main>
 		</>
 	);
+}
+
+export async function getStaticProps() {
+	//props로 데이터 넘길때에는 data안쪽의 값까지 뽑아낸다음에 전달
+	const { data } = await axios.get('/filter.php?c=Seafood');
+	console.log('data fetching on Server', data);
+
+	return {
+		props: data,
+		revalidate: 60 * 60 * 24,
+	};
 }
