@@ -2,8 +2,8 @@ import Head from 'next/head';
 import styles from './Home.module.scss';
 import clsx from 'clsx';
 import axios from 'axios';
-import Image from 'next/image';
-import Visual from '@/components/pic/Visual';
+//import Image from 'next/image';
+import { Visual, VisualWithText } from '@/components/pic/Visual';
 
 export default function Home({ meals }) {
 	const newMeals = meals.slice(0, 6);
@@ -17,6 +17,11 @@ export default function Home({ meals }) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className={clsx(styles.main)}>
+				<VisualWithText
+					imgSrc={newMeals[0].strMealThumb}
+					imgTxt={newMeals[0].strMeal}
+					style={{ color: 'yellow', fontSize: 15 }}
+				/>
 				<figure className='visual'>
 					<article className='bg'>
 						{newMeals.map((item) => (
