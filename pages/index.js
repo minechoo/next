@@ -3,7 +3,7 @@ import styles from './Home.module.scss';
 import clsx from 'clsx';
 import axios from 'axios';
 //import Image from 'next/image';
-import { Visual, VisualWithText } from '@/components/pic/Visual';
+import { Visual, VisualWithContent, VisualWithText } from '@/components/pic/Visual';
 
 export default function Home({ meals }) {
 	const newMeals = meals.slice(0, 6);
@@ -22,6 +22,9 @@ export default function Home({ meals }) {
 					imgTxt={newMeals[0].strMeal}
 					style={{ color: 'yellow', fontSize: 15 }}
 				/>
+				<VisualWithContent imgSrc={newMeals[1].strMealThumb} style={{ color: 'aqua' }}>
+					<span>자식요소</span>
+				</VisualWithContent>
 				<figure className='visual'>
 					<article className='bg'>
 						{newMeals.map((item) => (
