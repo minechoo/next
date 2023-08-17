@@ -17,9 +17,11 @@ export default function Home({ meals }) {
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
 			<main className={clsx(styles.main)}>
-				<Visual imgSrc={meals[0].strMealThumb} imgTxt={'Hello'}>
-					<span>Hello</span>
-				</Visual>
+				<div className={clsx(styles.box)}>
+					<Visual imgSrc={meals[0].strMealThumb} imgTxt={'Hello'} priority={true} className={styles.customPic}>
+						<span>Hello</span>
+					</Visual>
+				</div>
 			</main>
 		</>
 	);

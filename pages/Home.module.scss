@@ -5,4 +5,14 @@
 		font-size: 100px;
 		color: hotpink;
 	}
+	.box {
+		width: 300px;
+		background: lightblue;
+		padding: 10px;
+		margin: 100px auto;
+
+		.customPic {
+			height: 500px;
+		}
+	}
 }
