@@ -1,11 +1,20 @@
 import clsx from 'clsx';
 import styles from './Title.module.scss';
 import Link from 'next/link';
+import { Nanum_Myeongjo } from 'next/font/google';
+
+const nanum = Nanum_Myeongjo({
+	subsets: ['latin'],
+	weight: ['400', '700'],
+	preload: true,
+	variable: '--font-nanum',
+	//직접 사용할 변수 등록, 해당 변수명을 활용하면 클래스 등록
+});
 
 function Title({ children, url, style, className }) {
 	return (
 		<h1
-			className={clsx(styles.tit, className)}
+			className={clsx(styles.tit, className, nanum.variable)}
 			//url 속성유뮤로 자식에 링크가 있는지 파악
 			//만약 자식이 링크가 없으면 상위요소인 h1엘리먼트에는 transition 속성 제거, 자식으로 링크가 없으면 transition 속성 추가
 			style={url ? style : { ...style, transitionDuration: '0.5s' }}
