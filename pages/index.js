@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import axios from 'axios';
 //import Image from 'next/image';
 import { Visual } from '@/components/pic/Visual';
+import Text from '@/components/text/Text';
 
 export default function Home({ meals }) {
 	const newMeals = meals.slice(0, 6);
@@ -18,9 +19,11 @@ export default function Home({ meals }) {
 			</Head>
 			<main className={clsx(styles.main)}>
 				<div className={clsx(styles.box)}>
+					{/* 부모요소에서 직접 아톰컴포넌트에 클래스명을 지정해서 style을 overwrite히고 싶을때는 클래스를 등록한후 props 전달 */}
 					<Visual imgSrc={meals[0].strMealThumb} imgTxt={'Hello'} priority={true} className={styles.customPic}>
-						<span>Hello</span>
+						{/* <span>Hello</span> */}
 					</Visual>
+					<Text imgTxt={meals[0].strMeal} />
 				</div>
 			</main>
 		</>
