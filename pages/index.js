@@ -5,6 +5,7 @@ import axios from 'axios';
 //import Image from 'next/image';
 import { Visual } from '@/components/pic/Visual';
 import Text from '@/components/text/Text';
+import Title from '@/components/atoms/text/Title';
 
 export default function Home({ meals }) {
 	const newMeals = meals.slice(0, 6);
@@ -17,14 +18,19 @@ export default function Home({ meals }) {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.ico' />
 			</Head>
+
 			<main className={clsx(styles.main)}>
-				<div className={clsx(styles.box)}>
-					{/* 부모요소에서 직접 아톰컴포넌트에 클래스명을 지정해서 style을 overwrite히고 싶을때는 클래스를 등록한후 props 전달 */}
-					<Visual imgSrc={meals[0].strMealThumb} imgTxt={'Hello'} priority={true} className={styles.customPic}>
-						{/* <span>Hello</span> */}
-					</Visual>
-					<Text imgTxt={meals[0].strMeal} />
-				</div>
+				<Title
+					url={'/abc'}
+					className={styles.txt}
+					//style에 컬러값 적용시 hover값까지 같이 스크립트로 덮어쓰기 되므로
+					//아예 hover색상같이 같이 그룹으로 전달
+					//style객체로 컬러값 자체를 전달하지 않으면
+					//module.sass에 있는 기본 호버 스타일 적용
+					style={{ color: 'violet', hoverColor: 'aqua' }}
+				>
+					Hello
+				</Title>
 			</main>
 		</>
 	);
