@@ -20,6 +20,7 @@ export default function Home({ meals }) {
 			</Head>
 
 			<main className={clsx(styles.main)}>
+				{/* 				
 				<Title
 					url={'/abc'}
 					className={styles.txt}
@@ -28,7 +29,12 @@ export default function Home({ meals }) {
 					//style객체로 컬러값 자체를 전달하지 않으면
 					//module.sass에 있는 기본 호버 스타일 적용
 					style={{ color: 'violet', hoverColor: 'aqua' }}
+					type={'logo'}
 				>
+					Hello
+				</Title>
+				<Title type={'slogan'} tag={'h2'}>Slogan</Title> */}
+				<Title tag={'h3'} url={'/abc'} type={'slogan'} style={{ color: 'aqua', hoverColor: 'hotpink' }}>
 					Hello
 				</Title>
 			</main>

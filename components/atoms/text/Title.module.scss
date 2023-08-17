@@ -11,4 +11,22 @@
 	&:hover {
 		color: orange;
 	}
+
+	&.tit_logo {
+		font-family: var(--font-work);
+		font-weight: 500;
+		color: #555;
+		font-size: 25px;
+	}
+
+	&.tit_slogan {
+		font-size: 10vw;
+		color: orange;
+	}
+}
+
+.tit2 {
+	color: #333;
+	font-family: var(--font-work);
+	font-weight: 500;
 }
