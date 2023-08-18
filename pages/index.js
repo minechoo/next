@@ -3,8 +3,8 @@ import styles from './Home.module.scss';
 import clsx from 'clsx';
 import axios from 'axios';
 //import Image from 'next/image';
-import { Visual } from '@/components/pic/Visual';
-import Text from '@/components/text/Text';
+// import { Pic } from '@/components/pic/Pic';
+// import Text from '@/components/text/Text';
 import Title from '@/components/atoms/text/Title';
 
 export default function Home({ meals }) {
@@ -20,8 +20,7 @@ export default function Home({ meals }) {
 			</Head>
 
 			<main className={clsx(styles.main)}>
-				{/* 				
-				<Title
+				{/* <Title
 					url={'/abc'}
 					className={styles.txt}
 					//style에 컬러값 적용시 hover값까지 같이 스크립트로 덮어쓰기 되므로
@@ -33,7 +32,9 @@ export default function Home({ meals }) {
 				>
 					Hello
 				</Title>
-				<Title type={'slogan'} tag={'h2'}>Slogan</Title> */}
+				<Title type={'slogan'} tag={'h2'}>
+					Slogan
+				</Title> */}
 				<Title tag={'h3'} url={'/abc'} type={'slogan'} style={{ color: 'aqua', hoverColor: 'hotpink' }}>
 					Hello
 				</Title>

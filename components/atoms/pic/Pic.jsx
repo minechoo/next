@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import styles from './Visual.module.scss';
+import styles from './Pic.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
 
 ////해당 아톰 컴포넌트가 호출되는 위치에서의 className props를 내부로 전달
-export function Visual({ imgSrc, style, imgTxt, children, className, priority = false, url }) {
+export function Pic({ imgSrc, style, imgTxt, children, className, priority = false, url }) {
 	return (
 		<div className={clsx(styles.pic, className)} style={style}>
 			<Image src={imgSrc} alt={imgSrc} priority fill sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' />
