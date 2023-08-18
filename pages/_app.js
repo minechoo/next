@@ -1,4 +1,4 @@
-import Layout from '@/components/template/Layout';
+import Layout from '@/components/template/Layout/Layout';
 import '@/styles/globals.scss';
 import axios from 'axios';
 
@@ -21,7 +21,7 @@ Atomic(원자)
 Molecules(분자)
 - 검색바 (폼, 버튼), 메뉴(버튼)
 
-Organisms(육기체)
+Organisms(유기체)
 - GNB (메뉴를 그룹화)
 
 Template(탬플릿)
@@ -47,4 +47,12 @@ CSR(react-query): stale,cache타임을 지정해서 stale, cache타임이 소진
 SSR: 서버쪽에서 데이터를 fetching후 페이지를 미리 만들어서 랜더링(매번 검포넌트 접속할때마다)
 SSG: 서버쪽에서 데이터를 fetching후 페이지를 미리 만들어서 랜더링(프로젝트가 빌드될때 한번)
 ISR: 서버쪽에서 데이터를 fetching후 페이지를 미리 만들어서 랜더링(일정시간을 직접 설정해서 설정시간마다 다시 데이터 refectching후 빌드)
+*/
+
+/*
+  컴포넌트 렌더링 흐름
+  1. _app.js에서 공통의 layout 템플릿 컴포넌트를 가져와서 전체 Component를 Wrapping 
+  2. _app.js에 있는 Component는 page폴더 안쪽에 있는 각각의 페이지 컴포넌트를 의미
+  3. 모든 페이지 컴포넌트에는 Layout컴포넌트의 공통의 구조가 적용됨
+  4. 각각의 페이지 컴포넌트에서 페이지별로 들어각 컨텐츠 추가
 */

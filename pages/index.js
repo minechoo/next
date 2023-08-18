@@ -3,8 +3,8 @@ import axios from 'axios';
 import Text from '@/components/atoms/text/Text';
 import Title from '@/components/atoms/text/Title';
 import { Pic } from '@/components/atoms/pic/Pic';
-import NavBar from '@/components/molecules/NavBar';
-import Header from '@/components/organisms/Header';
+import NavBar from '@/components/molecules/NavBar/NavBar';
+import Header from '@/components/organisms/Header/Header';
 
 export default function Home({ meals, category }) {
 	// const newMeals = meals.slice(0, 6);
