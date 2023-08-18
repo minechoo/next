@@ -2,17 +2,25 @@ import clsx from 'clsx';
 import styles from './Pic.module.scss';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { DotLoader } from 'react-spinners';
 
-////해당 아톰 컴포넌트가 호출되는 위치에서의 className props를 내부로 전달
 export function Pic({ imgSrc, style, imgTxt, children, className, priority = false, url }) {
+	const [IsLoaded, setIsLoaded] = useState(false);
+
 	return (
 		<div className={clsx(styles.pic, className)} style={style}>
-			<Image src={imgSrc} alt={imgSrc} priority fill sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' />
+			<Image
+				src={imgSrc}
+				alt={imgSrc}
+				priority
+				fill
+				sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+				onLoadingComplete={() => setIsLoaded(true)}
+			/>
 			{imgTxt && (
 				<>
-					{/* 이미지위에 글자가 출력되야 되므로 dimmed처리할 마스크 */}
 					<aside></aside>
-					{/* url 값이 전달되면 Link컴포넌트를 연결해서 출력 */}
 					{url ? (
 						<h2>
 							<Link href={url}>{imgTxt}</Link>
@@ -28,6 +36,18 @@ export function Pic({ imgSrc, style, imgTxt, children, className, priority = fal
 					{url ? <Link href={url}>children</Link> : children}
 				</>
 			)}
+			{/* 로딩 */}
+			<DotLoader
+				cssOverride={{
+					position: 'absolute',
+					top: '50%',
+					left: '50%',
+					transform: 'translate(-50%, -50%)',
+				}}
+				size={100}
+				color={'aqua'}
+				loading={!IsLoaded}
+			/>
 		</div>
 	);
 }
