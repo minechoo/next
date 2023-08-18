@@ -1,7 +1,37 @@
 .txt {
-	position: absolute;
-	bottom: 20%;
-	left: 0;
-	color: yellow;
-	font-size: 15px;
+	color: #aaa;
+	font-size: 16px;
+	font-family: 'arial';
+	font-weight: normal;
+
+	* {
+		font-family: inherit;
+		color: inherit;
+		font-weight: inherit;
+		font-size: inherit;
+	}
+
+	&:hover {
+		color: orange;
+	}
+
+	&.txt_menu {
+		font-family: var(--font-nanum);
+		font-weight: 400;
+		font-style: italic;
+
+		&:hover {
+			color: orange;
+		}
+	}
+
+	&.txt_breadcrumb {
+		color: #888;
+		font-size: 12px;
+		font-style: normal;
+
+		&.on {
+			color: orange;
+		}
+	}
 }

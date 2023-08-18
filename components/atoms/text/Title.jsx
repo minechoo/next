@@ -55,7 +55,7 @@ function Title({ children, url, style, className, type }) {
 	);
 }
 */
-//React.createElement('elementType:striing', props:object, children:JSX Mode)
+//React.createElement('elementType:striing', props:object, children:React Mode)
 function Title({ children, url, style, className, type, tag }) {
 	return React.createElement(
 		tag, //elementType
@@ -66,7 +66,7 @@ function Title({ children, url, style, className, type, tag }) {
 			onMouseEnter: (e) => (e.target.style.color = style?.hoverColor),
 			onMouseLeave: (e) => (e.target.style.color = style?.color),
 		},
-		//JSX Node
+		//React Node
 		url
 			? React.createElement(
 					Link,
