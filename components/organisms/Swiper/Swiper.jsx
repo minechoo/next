@@ -27,7 +27,7 @@ function SwiperWrap({ recipe, category }) {
 				autoplay={{ delay: 2000, disableOnInteraction: true }}
 				loop={true}
 				grabCursor={true}
-				slidesPerView={3}
+				slidesPerView={1}
 				spaceBetween={100}
 				centeredSlides={true}
 				breakpoints={{
