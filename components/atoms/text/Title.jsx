@@ -11,7 +11,8 @@ const nanum = Nanum_Myeongjo({
 	weight: ['400', '700'],
 	preload: true,
 	variable: '--font-nanum',
-	//직접 사용할 변수 등록, 해당 변수명을 활용하면 클래스 등록
+	display: 'swap',
+	adjustFontFallback: false,
 });
 
 const work = Work_Sans({
@@ -19,6 +20,8 @@ const work = Work_Sans({
 	weight: ['300', '500'],
 	preload: true,
 	variable: '--font-work',
+	display: 'swap',
+	adjustFontFallback: false,
 });
 
 const orbitron = Orbitron({
@@ -26,6 +29,8 @@ const orbitron = Orbitron({
 	weight: ['400', '700'],
 	preload: true,
 	variable: '--font-orbitron',
+	display: 'swap',
+	adjustFontFallback: false,
 });
 
 /*
