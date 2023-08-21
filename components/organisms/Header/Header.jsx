@@ -1,4 +1,4 @@
-import Title from '../../atoms/text/Title';
+import { Title } from '../../atoms/text/Title';
 import NavBar from '../../molecules/NavBar/NavBar';
 import styles from './Header.module.scss';
 import clsx from 'clsx';

@@ -1,11 +1,13 @@
 .tit {
 	color: #333;
 	font-family: var(--font-nanum);
+	font-weight: 400;
 
 	a {
 		font-size: inherit;
 		color: inherit;
 		font-family: inherit;
+		font-weight: inherit;
 	}
 
 	&:hover {
@@ -14,14 +16,15 @@
 
 	&.tit_logo {
 		font-family: var(--font-nanum);
-		font-weight: 500;
+		font-weight: 700;
 		color: #fff;
 		font-size: 22px;
 	}
 
 	&.tit_slogan {
-		font-size: 10vw;
-		color: orange;
+		font-size: 5vw;
+		color: #fff;
+		font-family: var(--font-nanum);
 	}
 }
 

@@ -11,7 +11,7 @@ const nanum = Nanum_Myeongjo({
 	weight: ['400', '700'],
 	preload: true,
 	variable: '--font-nanum',
-	display: 'swap',
+	display: 'block',
 	adjustFontFallback: false,
 });
 
@@ -61,27 +61,17 @@ function Title({ children, url, style, className, type }) {
 }
 */
 //React.createElement('elementType:striing', props:object, children:React Mode)
-function Title({ children, url, style, className, type, tag = 'h1' }) {
+export function Title({ children, url, style, className, type, tag = 'h1' }) {
 	return React.createElement(
 		tag, //elementType
+		//props
 		{
-			//props
-			className: clsx(styles.tit, className, nanum.variable, work.variable, styles[`tit_${type}`]),
+			className: clsx(styles.tit, className, nanum.variable, work.variable, orbitron.variable, styles[`tit_${type}`]),
 			style: url ? style : { ...style, transitionDuration: '0.5s' },
 			onMouseEnter: (e) => (e.target.style.color = style?.hoverColor),
 			onMouseLeave: (e) => (e.target.style.color = style?.color),
 		},
 		//React Node
-		url
-			? React.createElement(
-					Link,
-					{
-						href: url,
-						style: { transitionDuration: '0.5s' },
-					},
-					children
-			  )
-			: children
+		url ? React.createElement(Link, { href: url, style: { transitionDuration: '0.5s' } }, children) : children
 	);
 }
-export default Title;

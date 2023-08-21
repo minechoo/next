@@ -35,7 +35,7 @@ const orbitron = Orbitron({
 });
 
 //React.createElement('elementType:striing', props:object, children:React Mode)
-function Text({ children, url, style, className, type, tag = 'p', isOn = false }) {
+export function Text({ children, url, style, className, type, tag = 'p', isOn = false }) {
 	const router = useRouter();
 	const currentPath = router.pathname;
 	return React.createElement(
@@ -69,4 +69,3 @@ function Text({ children, url, style, className, type, tag = 'p', isOn = false }
 			: children
 	);
 }
-export default Text;
