@@ -18,7 +18,9 @@ export default function Home({ meals, category }) {
 			<Head>
 				<title>Main App</title>
 			</Head>
-			<Swiper recipe={meals.slice(0, 6)} category={category} />
+			<main>
+				<Swiper recipe={meals.slice(0, 6)} category={category} />
+			</main>
 			{/* 
 				Swiper 컴포넌트 작업 계획
 				Visual - Organism

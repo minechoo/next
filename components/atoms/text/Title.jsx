@@ -20,7 +20,6 @@ const work = Work_Sans({
 	weight: ['300', '500'],
 	preload: true,
 	variable: '--font-work',
-	display: 'swap',
 	adjustFontFallback: false,
 });
 
@@ -29,7 +28,6 @@ const orbitron = Orbitron({
 	weight: ['400', '700'],
 	preload: true,
 	variable: '--font-orbitron',
-	display: 'swap',
 	adjustFontFallback: false,
 });
 
