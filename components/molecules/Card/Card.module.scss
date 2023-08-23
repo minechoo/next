@@ -11,4 +11,18 @@
 		opacity: 1;
 		filter: saturate(100%);
 	}
+
+	p {
+		margin-top: 20px;
+		color: #ccc;
+
+		&::before {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 1px;
+			background: #777;
+			margin-bottom: 15px;
+		}
+	}
 }
