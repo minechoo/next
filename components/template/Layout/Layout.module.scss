@@ -9,6 +9,7 @@
 		height: 100%;
 		// border: 1px solid orange;
 		overflow-y: auto;
+		overflow-x: hidden;
 
 		&::-webkit-scrollbar {
 			width: 4px;
