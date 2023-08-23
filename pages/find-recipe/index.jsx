@@ -4,6 +4,7 @@ import axios from 'axios';
 import Category from '@/components/molecules/Category/Category';
 import { useRecipeByCategory } from '@/hooks/useRecipe';
 import { useState } from 'react';
+import { useDebounce } from '@/hooks/useDebounce';
 
 export default function Recipe({ categories }) {
 	//console.log(categories);
@@ -14,7 +15,10 @@ export default function Recipe({ categories }) {
 	//react-query 를 활용하는 쿼리키 인수값을 state에 담음
 	const [Selected, setSelected] = useState(categories[0].strCategory);
 	//해당 State값이 바뀔때마다 react-query훅이 호출되면서 새로운 데이터 패칭
-	const { data, isSuccess } = useRecipeByCategory(Selected);
+	//const { data, isSuccess } = useRecipeByCategory(Selected);
+
+	const DebouncedSelected = useDebounce(Selected);
+	const { data, isSuccess } = useRecipeByCategory(DebouncedSelected);
 	console.log(data);
 	return (
 		<>
