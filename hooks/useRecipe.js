@@ -12,8 +12,8 @@ export const useRecipeByCategory = (SelectedCategory) => {
 	return useQuery(['RecipeByCategory', SelectedCategory], getRecipeByCategory, {
 		refetchOnMount: false,
 		refetchOnWindowFocus: false,
-		cacheTime: 1000 * 60,
-		staleTime: 1000 * 60,
+		cacheTime: 1000 * 60 * 60 * 24,
+		staleTime: 1000 * 60 * 60 * 24,
 		retry: 3, //데이터 요청 시도 횟수(디폴트3, 네트워크상황이 안 좋을때 재시도횟수 늘림)
 		//enabled값에는 truty falsy값이 적용이 안됨(직접  boolean 값을 생성해서 저장)
 		//지금 상황에서는 SSG방식으로 초기데이터를 호출하고 있기 때문에 아래구문을 지정안해도 잘 동작됨
