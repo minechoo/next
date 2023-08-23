@@ -17,6 +17,8 @@ export default function Recipe({ categories }) {
 	//해당 State값이 바뀔때마다 react-query훅이 호출되면서 새로운 데이터 패칭
 	//const { data, isSuccess } = useRecipeByCategory(Selected);
 
+	//useDebounce 는 컴포넌트의 재랜더링 자체를 막는것이 아닌
+	//특정 state 변경될때마다 실행되는 무거운 함수의 호출 자체를 Debouncing 하기 위함
 	const DebouncedSelected = useDebounce(Selected);
 	const { data, isSuccess } = useRecipeByCategory(DebouncedSelected);
 	console.log(data);
