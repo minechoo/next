@@ -30,12 +30,29 @@ export default function Recipe({ categories }) {
 	const { data: dataBySearch, isSuccess: isSearch } = useRecipeBySearch(DebouncedSearch);
 	//console.log(data);
 
+	//카테고리 버튼을 클릭할때 실행되는 함수
+	//Selected값이 변경되고 새롭게 쿼리 요청을 보내는 조건이 Search값이 비어있어야 가능하므로
+	//일단 Search값을 비워놓고 State변경요청 보내는 함수
+	const handleClickCategory = (state) => {
+		setSearch('');
+		setSelected(state);
+	};
+
 	useEffect(() => {
 		//디바운싱되는 search, selected 값이 변경될때마다 실행되는 useEffect
 		//Search값이 있다면 기존의 카테고리 값을 비워야되므로 setSelected빈문자값을 쿼리보내서 빈배열을 다시 반환, 결과적으로 해당데이터는 화면에서 사라짐
 		console.log(DebouncedSearch);
-		setSelected('');
-	}, [DebouncedSearch, DebouncedSelected]);
+
+		if (DebouncedSearch) {
+			//search값이 없으면 다시 Search를 초기화시킨다음에
+			//Selected값을 변경해서 새로 쿼리요청을 보냄
+			setSelected('');
+		} else {
+			setSearch('');
+			!DebouncedSelected && setSelected(categories[0].strCategory);
+		}
+	}, [DebouncedSearch, DebouncedSelected, categories]);
+
 	return (
 		<>
 			<Head>
@@ -46,7 +63,7 @@ export default function Recipe({ categories }) {
 				{/* 자식 컴포넌트에 이벤트 전달해야때 무조건 이벤트명 props 핸들러함수 전달 : 자식요소에 어떤이벤트에 어떤 핸들러가 보내지는 파악하기 위함 */}
 				{/* State변경하는 이벤트 핸들러함수를 onClick props에 담아서 전달 */}
 				{/* 버튼활성화 순서1- category로 활성화여부를 구분할수 있는 정보값을 active라는 props로 전달 */}
-				<Category items={categories} onClick={setSelected} active={DebouncedSelected} />
+				<Category items={categories} onClick={handleClickCategory} active={DebouncedSelected} />
 
 				<Title type={'slogan'} className={clsx(styles.titCategory)}>
 					{DebouncedSelected}
