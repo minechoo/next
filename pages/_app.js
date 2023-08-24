@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
+import { keepStyle } from '@/libs/keepStyle';
+keepStyle(2000);
 
 axios.defaults.baseURL = 'https://www.themealdb.com/api/json/v1/1';
 
@@ -92,7 +94,7 @@ ISR: 서버쪽에서 데이터를 fetching후 페이지를 미리 만들어서 �
 	프리렌더링 방식으로 구현되어 있는 페이지들은 이벤트가 발생하지 않더라도 라우터설정되어 있는 메뉴에 호버하면 
 	해당 데이터를 확인할걸로 예측해서 미리 prefetching처리
 	해당 페이지 컴포넌트가 라우터명이 변경되서 unmount될때마다 이다음에 prefetch할 데이터 용량을 최소화하기 위해서 style노드를 제거
-	
+
 	Framer-motion AnimatePresence를 이용해서 모션이 끝날때까지 이전 컴포넌트의 언마운트 시점을 강제로 holding하고 있으면
 	이미 스타일 제거된 지저분한 페이지가 화면에 계속 출력이 되는 문제 발생
 	정적인 스타일은 상관없지만 자바스크립트 동적으로 제어하는 module.scss. style-component, tailwindCSS에는 모두 위와 같은 문제발생
