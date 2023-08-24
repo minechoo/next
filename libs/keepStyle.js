@@ -10,6 +10,7 @@ export const keepStyle = (delay) => {
 		for (let copy of copies) {
 			copy.removeAttribute('data-n-p');
 			copy.removeAttribute('data-n-href');
+			document.head.appendChild(copy);
 		}
 
 		//일정시간 뒤에 복사된 스타일 노드를 제거하는 함수
