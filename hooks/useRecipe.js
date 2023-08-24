@@ -8,8 +8,8 @@ const getRecipeByCategory = async ({ queryKey }) => {
 	return data?.meals || [];
 };
 
-export const useRecipeByCategory = (SelectedCategory) => {
-	return useQuery(['RecipeByCategory', SelectedCategory], getRecipeByCategory, {
+export const useRecipeByCategory = (DebounceCategory) => {
+	return useQuery(['RecipeByCategory', DebounceCategory], getRecipeByCategory, {
 		refetchOnMount: false,
 		refetchOnWindowFocus: false,
 		cacheTime: 1000 * 60 * 60 * 24,
@@ -18,6 +18,22 @@ export const useRecipeByCategory = (SelectedCategory) => {
 		//enabled값에는 truty falsy값이 적용이 안됨(직접  boolean 값을 생성해서 저장)
 		//지금 상황에서는 SSG방식으로 초기데이터를 호출하고 있기 때문에 아래구문을 지정안해도 잘 동작됨
 		//CSR방식으로 호출할떄에는 초기값이 undefined이기 때문에 발생하는 에러를 미리 방지
-		enabled: SelectedCategory !== undefined, //useQuery 호출유무 true(실행, 디폴트) false(실행안함)
+		enabled: DebounceCategory !== undefined, //useQuery 호출유무 true(실행, 디폴트) false(실행안함)
+	});
+};
+
+const getRecipeBySearch = async ({ queryKey }) => {
+	const { data } = await axios.get(`/search.php?s=${queryKey[1]}`);
+	return data?.meals || [];
+};
+
+export const useRecipeBySearch = (DebounceSearch) => {
+	return useQuery(['RecipeBySearch', DebounceSearch], getRecipeBySearch, {
+		refetchOnMount: false,
+		refetchOnWindowFocus: false,
+		cacheTime: 1000 * 60 * 60 * 24,
+		staleTime: 1000 * 60 * 60 * 24,
+		retry: 3,
+		enabled: DebounceSearch !== '', //현재 인수로 들어온 인풋이 진 문자열이면 실행불가
 	});
 };

@@ -2,12 +2,13 @@ import Head from 'next/head';
 import styles from './style.module.scss';
 import axios from 'axios';
 import Category from '@/components/molecules/Category/Category';
-import { useRecipeByCategory } from '@/hooks/useRecipe';
-import { useState } from 'react';
+import { useRecipeByCategory, useRecipeBySearch } from '@/hooks/useRecipe';
+import { useState, useEffect } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import Card from '@/components/molecules/Card/Card';
 import { Title } from '@/components/atoms/text/Title';
 import clsx from 'clsx';
+import SearchBar from '@/components/molecules/SearchBar/SearchBar';
 
 export default function Recipe({ categories }) {
 	//console.log(categories);
@@ -22,9 +23,16 @@ export default function Recipe({ categories }) {
 
 	//useDebounce 는 컴포넌트의 재랜더링 자체를 막는것이 아닌
 	//특정 state 변경될때마다 실행되는 무거운 함수의 호출 자체를 Debouncing 하기 위함
+	const [Search, setSearch] = useState('');
 	const DebouncedSelected = useDebounce(Selected);
+	const DebouncedSearch = useDebounce(Search);
 	const { data: dataByCategory, isSuccess: isCategory } = useRecipeByCategory(DebouncedSelected);
+	const { data: dataBySearch, isSuccess: isSearch } = useRecipeBySearch(DebouncedSearch);
 	//console.log(data);
+
+	useEffect(() => {
+		console.log(DebouncedSearch);
+	}, [DebouncedSearch]);
 	return (
 		<>
 			<Head>
@@ -40,6 +48,9 @@ export default function Recipe({ categories }) {
 				<Title type={'slogan'} className={clsx(styles.titCategory)}>
 					{DebouncedSelected}
 				</Title>
+
+				<SearchBar inputType={'text'} isBtn={false} placeholder={'search'} value={Search} onChange={setSearch} />
+
 				<div className={clsx(styles.listFrame)}>
 					{isCategory &&
 						dataByCategory.map((el) => (
@@ -47,7 +58,18 @@ export default function Recipe({ categories }) {
 								key={el.idMeal}
 								imgSrc={el.strMealThumb}
 								url={`/find-recipe/${el.idMeal}`}
-								txt={el.strMeal}
+								txt={`category: ${el.strMeal}`}
+								className={clsx(styles.card)}
+							/>
+						))}
+
+					{isSearch &&
+						dataBySearch.map((el) => (
+							<Card
+								key={el.idMeal}
+								imgSrc={el.strMealThumb}
+								url={`/find-recipe/${el.idMeal}`}
+								txt={`search: ${el.strMeal}`}
 								className={clsx(styles.card)}
 							/>
 						))}
