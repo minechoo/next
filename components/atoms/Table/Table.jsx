@@ -10,21 +10,31 @@ import clsx from 'clsx';
     td()
 */
 
-export function Table({ data }) {
+export function Table({ data, title }) {
 	if (data.length === 0) return;
 	console.log(data[0]);
 	return (
 		<>
-			<Title>Title</Title>
+			{title && <Title>{title}</Title>}
 
 			<table className={clsx(styles.table)}>
 				<thead>
 					<tr>
+						{/* 첫번째 배열의 키값만 반복을 돌면서 제목줄 출력 */}
 						{Object.keys(data[0]).map((key) => (
 							<th key={key}>{key}</th>
 						))}
 					</tr>
 				</thead>
+				<tbody>
+					{data.map((el, idx) => (
+						<tr key={idx}>
+							{Object.values(el).map((val, idx) => (
+								<td key={idx}>{val}</td>
+							))}
+						</tr>
+					))}
+				</tbody>
 			</table>
 		</>
 	);
