@@ -35,3 +35,13 @@
 		}
 	}
 }
+
+@media screen and (max-width: $tablet) {
+	.recipePage {
+		.titCategory {
+			&::after {
+				background: orange;
+			}
+		}
+	}
+}

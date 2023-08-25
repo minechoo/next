@@ -104,7 +104,7 @@ export default function Recipe({ categories }) {
 								className={clsx(styles.card)}
 							/>
 						))}
-					{/* category가 없고 search 있고 Search 값이 0일때 */}
+					{/*search 있고 Search 값이 0일때 */}
 					{isSearch && dataBySearch.length === 0 && (
 						<Text style={{ fontSize: 22, marginTop: 80, color: 'orange' }}>
 							No result || <br /> Try another Recipe Name
