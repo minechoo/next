@@ -9,6 +9,7 @@ import Card from '@/components/molecules/Card/Card';
 import { Title } from '@/components/atoms/text/Title';
 import clsx from 'clsx';
 import SearchBar from '@/components/molecules/SearchBar/SearchBar';
+import { Text } from '@/components/atoms/text/Text';
 
 export default function Recipe({ categories }) {
 	//console.log(categories);
@@ -74,13 +75,14 @@ export default function Recipe({ categories }) {
 				<Category items={categories} onClick={handleClickCategory} active={DebouncedSelected} />
 
 				<Title type={'slogan'} className={clsx(styles.titCategory)}>
-					{DebouncedSelected}
+					{DebouncedSelected ? DebouncedSelected : `result: ${DebouncedSearch}`}
 				</Title>
 
 				{/* 검색창에 onChange가 발생할때마다 실행할 함수를 onChange props로 전달 */}
 				<SearchBar inputType={'text'} isBtn={false} placeholder={'search'} value={Search} onChange={setSearch} />
 
 				<div className={clsx(styles.listFrame)}>
+					{/* 카테고리가 데이터가 있을때  */}
 					{isCategory &&
 						dataByCategory.map((el) => (
 							<Card
@@ -91,7 +93,7 @@ export default function Recipe({ categories }) {
 								className={clsx(styles.card)}
 							/>
 						))}
-
+					{/* search 데이터 있을때 */}
 					{isSearch &&
 						dataBySearch.map((el) => (
 							<Card
@@ -102,6 +104,12 @@ export default function Recipe({ categories }) {
 								className={clsx(styles.card)}
 							/>
 						))}
+					{/* category가 없고 search 있고 Search 값이 0일때 */}
+					{isSearch && dataBySearch.length === 0 && (
+						<Text style={{ fontSize: 22, marginTop: 80, color: 'orange' }}>
+							No result || <br /> Try another Recipe Name
+						</Text>
+					)}
 				</div>
 			</section>
 		</>
