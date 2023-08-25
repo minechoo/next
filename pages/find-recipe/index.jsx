@@ -17,13 +17,19 @@ export default function Recipe({ categories }) {
 	//react-query를 굳이 써야되는 이유 : 반환받은 서버 데이터를 캐싱처리해서 동일한 데이터 요청시 다시 refetching하지 않기 위함
 	//{data(서버데이터), isSuccess(요청성공시 true반환), isError(요청실패시 true반환), isLoading(요청중일떄 true반환), refetch(강제 refetching함수)}
 	//react-query 를 활용하는 쿼리키 인수값을 state에 담음
+
+	//Selected, Search 값이 변경되면 컴포넌트 재호출되며
+	//컴포넌트 재호출되면 자동으로 react-query훅이 해당 state값을 인수로 전달해서 자동데이터 fetching처리
+	//미리 지정한 stale, cache가 남아있으면 데이터를 refetching하지 않음
 	const [Selected, setSelected] = useState(categories[0].strCategory);
+	const [Search, setSearch] = useState('');
 	//해당 State값이 바뀔때마다 react-query훅이 호출되면서 새로운 데이터 패칭
 	//const { data, isSuccess } = useRecipeByCategory(Selected);
 
 	//useDebounce 는 컴포넌트의 재랜더링 자체를 막는것이 아닌
 	//특정 state 변경될때마다 실행되는 무거운 함수의 호출 자체를 Debouncing 하기 위함
-	const [Search, setSearch] = useState('');
+
+	//이벤트가 단기간에 너무 많은 요청이 들어가는 것을 방지하기 위해서 위 2개 state값을 debounce처리해서 핸들러 호출횟수를 줄임
 	const DebouncedSelected = useDebounce(Selected);
 	const DebouncedSearch = useDebounce(Search);
 	const { data: dataByCategory, isSuccess: isCategory } = useRecipeByCategory(DebouncedSelected, DebouncedSearch);
@@ -48,6 +54,7 @@ export default function Recipe({ categories }) {
 			//Selected값을 변경해서 새로 쿼리요청을 보냄
 			setSelected('');
 		} else {
+			//처음 마운트가 되어서 검색어가 없거나 사용자가 일부러 검색어를 비운 경우
 			setSearch('');
 			!DebouncedSelected && setSelected(categories[0].strCategory);
 		}
@@ -63,12 +70,14 @@ export default function Recipe({ categories }) {
 				{/* 자식 컴포넌트에 이벤트 전달해야때 무조건 이벤트명 props 핸들러함수 전달 : 자식요소에 어떤이벤트에 어떤 핸들러가 보내지는 파악하기 위함 */}
 				{/* State변경하는 이벤트 핸들러함수를 onClick props에 담아서 전달 */}
 				{/* 버튼활성화 순서1- category로 활성화여부를 구분할수 있는 정보값을 active라는 props로 전달 */}
+				{/* 카테고리 버튼 클릭할때마다 실행할 핸들러 함수를 onClick props으로 전달 */}
 				<Category items={categories} onClick={handleClickCategory} active={DebouncedSelected} />
 
 				<Title type={'slogan'} className={clsx(styles.titCategory)}>
 					{DebouncedSelected}
 				</Title>
 
+				{/* 검색창에 onChange가 발생할때마다 실행할 함수를 onChange props로 전달 */}
 				<SearchBar inputType={'text'} isBtn={false} placeholder={'search'} value={Search} onChange={setSearch} />
 
 				<div className={clsx(styles.listFrame)}>

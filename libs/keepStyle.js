@@ -8,7 +8,9 @@ export const keepStyle = (delay) => {
 
 		//next가 복사한 스타일 노드를 제거하지 못하도록 전용 속성명을 제거
 		for (let copy of copies) {
+			//static하게 연결되는 스타일(next가 제거안함)
 			copy.removeAttribute('data-n-g');
+			//다이나믹하게 연결되는 스타일(module.scss)
 			copy.removeAttribute('data-n-href');
 			document.head.appendChild(copy);
 		}
